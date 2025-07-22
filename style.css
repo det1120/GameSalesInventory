@@ -1,0 +1,377 @@
+/* Custom styles for Inter font and subtle effects */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #1A1A1A; /* Dark charcoal background */
+    color: #E0E0E0; /* Light text for general content */
+}
+/* Custom scrollbar for better aesthetics */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: #282828; /* Darker track */
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb {
+    background: #555;
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #777;
+}
+
+/* Keyframe for subtle fade-in effect on items */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.animate-fadeIn {
+    animation: fadeIn 0.5s ease-out forwards;
+}
+
+/* Hover effect for game cards */
+.game-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background-color: #282828; /* Darker background for game cards */
+    color: #E0E0E0; /* Light text for game cards */
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.15); /* Subtle initial shadow */
+    cursor: pointer; /* Indicate clickable */
+}
+.game-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(167, 139, 250, 0.4); /* Darker shadow + purple glow on hover */
+}
+.game-card h3 {
+    color: #FFFFFF; /* White for game titles */
+    font-size: 1.125rem; /* text-lg - Adjusted to match price font size */
+    font-weight: 800; /* font-extrabold */
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); /* Subtle text shadow */
+}
+.game-card p {
+    color: #A0A0A0; /* Lighter gray for details */
+}
+.game-card .text-indigo-600 { /* Platform color - adjusted for new accent */
+    color: #A78BFA; /* Purple accent */
+}
+.game-card .text-green-600 { /* Price color - adjusted for new accent */
+    color: #4ADE80; /* Green accent */
+}
+
+/* Image container with vignette */
+.game-image-container {
+    position: relative;
+    width: 100%;
+    height: 10rem; /* Adjusted height: h-40 */
+    overflow: hidden;
+    border-top-left-radius: 0.5rem; /* rounded-t-xl */
+    border-top-right-radius: 0.5rem; /* rounded-t-xl */
+    background-color: #3A3A3A; /* Dark background for image container */
+}
+.game-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures image covers the area, cropping if necessary */
+    border-top-left-radius: inherit;
+    border-top-right-radius: inherit;
+}
+.game-image-container::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50%; /* Height of the gradient */
+    background: linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0)); /* Dark vignette */
+    pointer-events: none; /* Allow clicks through */
+}
+/* Style for fallback image placeholder */
+.image-placeholder-fallback {
+    background-color: #3A3A3A; /* Dark background for fallback */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #A0A0A0; /* Light gray text for fallback */
+    font-size: 0.9rem;
+    text-align: center;
+    min-height: 100%; /* Ensure it fills the container */
+}
+
+/* Card details section for expand/collapse */
+.game-card-details {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-out; /* Smooth transition for expansion */
+    padding: 0 1.5rem; /* Horizontal padding from p-6 */
+}
+.game-card.expanded .game-card-details {
+    max-height: 200px; /* Max height for content, adjust as needed */
+    padding-bottom: 1.5rem; /* Vertical padding from p-6 */
+}
+
+/* Button hover effects */
+.btn-primary, .btn-secondary, .btn-danger, .toggle-sold-btn { /* Added toggle-sold-btn to this group */
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* Initial button shadow */
+}
+.btn-primary { /* Export, Save Game */
+    background-color: #A78BFA; /* Purple accent */
+    color: #1A1A1A; /* Dark text on accent */
+    font-weight: bold;
+}
+.btn-primary:hover {
+    background-color: #9373E6; /* Darker Purple */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5), 0 0 10px rgba(167, 139, 250, 0.6); /* Glow on hover */
+}
+.btn-secondary { /* Edit */
+    background-color: #F472B6; /* Pink accent */
+    color: #1A1A1A; /* Dark text on accent */
+    font-weight: bold;
+}
+.btn-secondary:hover {
+    background-color: #E65AA0; /* Darker Pink */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5), 0 0 10px rgba(244, 114, 182, 0.6); /* Glow on hover */
+}
+.btn-danger { /* Delete */
+    background-color: #EF4444; /* Red accent */
+    color: #1A1A1A; /* Dark text on accent */
+    font-weight: bold;
+}
+.btn-danger:hover {
+    background-color: #D62C2C; /* Darker Red */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5), 0 0 10px rgba(239, 68, 68, 0.6); /* Glow on hover */
+}
+/* Toggle Sold/Available button specific styles */
+.toggle-sold-btn.bg-green-500 { /* Mark Available */
+    background-color: #4ADE80; /* Green accent */
+    color: #1A1A1A;
+}
+.toggle-sold-btn.bg-green-500:hover {
+    background-color: #3BB16D; /* Darker Green */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5), 0 0 10px rgba(74, 222, 128, 0.6);
+}
+.toggle-sold-btn.bg-yellow-500 { /* Mark Sold */
+    background-color: #FBBD23; /* Yellow/Orange accent */
+    color: #1A1A1A;
+}
+.toggle-sold-btn.bg-yellow-500:hover {
+    background-color: #E0A800; /* Darker Yellow/Orange */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5), 0 0 10px rgba(251, 189, 35, 0.6);
+}
+
+
+/* Modal backdrop blur effect */
+.modal-backdrop {
+    backdrop-filter: blur(8px); /* Moderate blur */
+    background-color: rgba(0, 0, 0, 0.7); /* Darker overlay */
+}
+
+/* Modal content styles */
+#gameModalContent, #confirmationModalContent, #activityHistoryModalContent {
+    background-color: #282828; /* Dark background for modals */
+    color: #E0E0E0; /* Light text */
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.7), 0 10px 10px -5px rgba(0, 0, 0, 0.4); /* Stronger shadow */
+}
+#modalTitle, #activityHistoryModalContent h2 {
+    color: #A78BFA; /* Purple heading */
+}
+#gameForm label {
+    color: #C0C0C0; /* Lighter gray for labels */
+}
+#gameForm input, #gameForm select, #gameForm textarea {
+    background-color: #3A3A3A; /* Darker input background */
+    border-color: #555; /* Darker border */
+    color: #E0E0E0; /* Light text in inputs */
+}
+#gameForm input:focus, #gameForm select:focus, #gameForm textarea:focus {
+    border-color: #A78BFA; /* Purple focus border */
+    box-shadow: 0 0 0 2px rgba(167, 139, 250, 0.5); /* Purple ring */
+}
+#gameForm .file\:bg-blue-50 { /* File input button */
+    background-color: #F472B6; /* Pink accent */
+    color: #1A1A1A;
+}
+#gameForm .file\:text-blue-700 {
+    color: #1A1A1A;
+}
+#gameForm .hover\:file\:bg-blue-100:hover {
+    background-color: #E65AA0; /* Darker Pink on hover */
+}
+#cancelBtn {
+    background-color: #444;
+    color: #F0F0F0;
+}
+#cancelBtn:hover {
+    background-color: #555;
+}
+
+
+/* Image loading placeholder */
+/* This rule is now less critical as .game-image-container handles background */
+.image-placeholder {
+    background-color: #333; /* Darker placeholder */
+    color: #BBB;
+}
+
+/* Styles for sold items */
+.game-card.sold-item {
+    opacity: 0.5; /* More dim */
+}
+.game-card.sold-item::before {
+    background-color: rgba(239, 68, 68, 0.9); /* More opaque red */
+    font-size: 2.2rem; /* Slightly larger */
+}
+
+/* Custom styles for dashboard cards with gradient border */
+.dashboard-card-wrapper {
+    position: relative;
+    border-radius: 1rem;
+    padding: 2px;
+    background: linear-gradient(to right, #A78BFA, #F472B6, #FBBD23); /* Purple, Pink, Yellow/Orange gradient */
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.15); /* Darker shadow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.dashboard-card-wrapper:hover {
+    transform: translateY(-10px); /* More pronounced lift */
+    box-shadow: 0 25px 35px -5px rgba(0, 0, 0, 0.6), 0 15px 15px -5px rgba(0, 0, 0, 0.3); /* Stronger shadow on hover */
+}
+
+.dashboard-card-inner {
+    background-color: #282828; /* Dark background for the inner card */
+    border-radius: inherit;
+    padding: 1.5rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: #E0E0E0; /* Light text color */
+}
+.dashboard-card-inner h3 {
+    color: #A0A0A0; /* Lighter gray for titles */
+    font-weight: 600;
+}
+.dashboard-card-inner p {
+    color: #FFFFFF; /* White for numbers */
+}
+.dashboard-card-inner .icon-circle {
+    background-color: rgba(255, 255, 255, 0.15); /* Slightly more opaque white circle */
+    border-radius: 9999px;
+    width: 3.5rem;
+    height: 3.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+.dashboard-card-inner .icon-circle i {
+    font-size: 2.5rem;
+    color: #E0E0E0; /* Light gray for icons */
+}
+
+/* Specific icon colors for better visual distinction (Deep & Moody Palette) */
+.dashboard-card-wrapper:nth-child(1) .icon-circle { background-color: rgba(167, 139, 250, 0.2); } /* Purple */
+.dashboard-card-wrapper:nth-child(1) .icon-circle i { color: #A78BFA; }
+
+.dashboard-card-wrapper:nth-child(2) .icon-circle { background-color: rgba(244, 114, 182, 0.2); } /* Pink */
+.dashboard-card-wrapper:nth-child(2) .icon-circle i { color: #F472B6; }
+
+.dashboard-card-wrapper:nth-child(3) .icon-circle { background-color: rgba(251, 189, 35, 0.2); } /* Yellow/Orange */
+.dashboard-card-wrapper:nth-child(3) .icon-circle i { color: #FBBD23; }
+
+.dashboard-card-wrapper:nth-child(4) .icon-circle { background-color: rgba(74, 222, 128, 0.2); } /* Green */
+.dashboard-card-wrapper:nth-child(4) .icon-circle i { color: #4ADE80; }
+
+.dashboard-card-wrapper:nth-child(5) .icon-circle { background-color: rgba(239, 68, 68, 0.2); } /* Red */
+.dashboard-card-wrapper:nth-child(5) .icon-circle i { color: #EF4444; }
+
+/* Header buttons and inputs */
+header {
+    background: linear-gradient(to right, #282828, #1A1A1A); /* Darker gradient for header */
+}
+header .bg-white { /* Search, File Mgmt, Filter/Sort buttons */
+    background-color: #3A3A3A; /* Darker background */
+    color: #E0E0E0;
+}
+header .bg-white:hover {
+    background-color: #4A4A4A; /* Slightly lighter on hover */
+}
+header input {
+    background-color: #3A3A3A;
+    color: #E0E0E0;
+    border-color: #555;
+}
+header input::placeholder {
+    color: #A0A0A0;
+}
+header select {
+    background-color: #3A3A3A;
+    color: #E0E0E0;
+    border-color: #555;
+}
+header select:focus {
+    border-color: #A78BFA; /* Purple focus */
+    box-shadow: 0 0 0 2px rgba(167, 139, 250, 0.5);
+}
+header .text-blue-600 { /* Icons in header inputs */
+    color: #A78BFA; /* Purple accent */
+}
+header .bg-blue-600 { /* Export button */
+    background-color: #A78BFA; /* Purple */
+}
+header .bg-blue-600:hover {
+    background-color: #9373E6; /* Darker Purple */
+}
+header .bg-indigo-600 { /* Import button */
+    background-color: #F472B6; /* Pink */
+}
+header .bg-indigo-600:hover {
+    background-color: #E65AA0; /* Darker Pink */
+}
+header .bg-white.text-blue-600 { /* Add Game, View Activity buttons */
+    background-color: #3A3A3A;
+    color: #A78BFA; /* Purple */
+}
+header .bg-white.text-blue-600:hover {
+    background-color: #4A4A4A;
+    color: #C0A8FF;
+}
+
+/* Pagination controls */
+#paginationControls button {
+    background-color: #282828;
+    color: #E0E0E0;
+}
+#paginationControls button:hover:not(:disabled) {
+    background-color: #3A3A3A;
+}
+#paginationControls button:disabled {
+    background-color: #1A1A1A;
+    color: #555;
+}
+#pageInfo {
+    color: #E0E0E0;
+}
+
+/* Activity log items */
+#activityLog .bg-gray-100 {
+    background-color: #282828; /* Darker background for log items */
+    color: #E0E0E0;
+}
+#activityLog .text-gray-800 {
+    color: #E0E0E0;
+}
+#activityLog .text-gray-600 {
+    color: #A0A0A0;
+}
+#activityLog .text-green-500 { color: #4ADE80; } /* Green for added icon */
+#activityLog .text-green-700 { color: #4ADE80; } /* Green for added text */
+#activityLog .text-red-500 { color: #EF4444; } /* Red for sold icon */
+#activityLog .text-red-700 { color: #EF4444; } /* Red for sold text */
+#activityLog .text-blue-500 { color: #A78BFA; } /* Purple for available icon */
+#activityLog .text-blue-700 { color: #A78BFA; } /* Purple for available text */
+#activityLog .text-yellow-500 { color: #FBBD23; } /* Yellow/Orange for edited icon */
+#activityLog .text-yellow-700 { color: #FBBD23; } /* Yellow/Orange for edited text */
+#activityLog .text-gray-500 { color: #A0A0A0; } /* Gray for deleted icon */
+#activityLog .text-gray-700 { color: #A0A0A0; } /* Gray for deleted text */
